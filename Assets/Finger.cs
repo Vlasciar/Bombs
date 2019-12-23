@@ -8,10 +8,10 @@ public class Finger : MonoBehaviour
     private float width;
     private float height;
     
-    public int FID = 0;
+
     public float Xscale = 8.5f;
     public float Yscale = 5f;
-
+    
     void Start()
     {
 
@@ -20,30 +20,47 @@ public class Finger : MonoBehaviour
         // Position used for the cube.
         position = new Vector3(0.0f, 0.0f, 0.0f);
     }
-    
-
+ 
     void Update()
     {
         if (Game_Controller.Game_Started)
-        {         
-            Follow_Fingers();          
+        {           
+            Follow_Fingers();
         }
     }
-
+    //public Finger other_finger;
     void Follow_Fingers()
     {
-
         Touch touch = Input.GetTouch(FID);
-
-        if (FID == touch.fingerId && touch.phase == TouchPhase.Moved)// Move the cube if the screen has the finger moving.
-        {---------------------------------------
+        
+        if (touch.phase == TouchPhase.Moved)// Move the cube if the screen has the finger moving.//FID == touch.fingerId &&
+        {
             Vector2 pos = touch.position;
             pos.x = ((pos.x - width) * Xscale) / width;
             pos.y = ((pos.y - height) * Yscale) / height;
             position = new Vector3(pos.x, pos.y, 0.0f);
 
-            // Position the cube.
+            // Position the cube.`
             transform.position = position;
         }
     }
+
+    public int FID;
+    public float touch_radius = 3;
+
+    /* bool Check_Valid_Touch()
+    {
+        Touch touch = Input.GetTouch(FID);
+
+        Vector2 pos = touch.position;
+        float x1 = ((pos.x - width) * Xscale) / width;
+        float y1 = ((pos.y - height) * Yscale) / height;
+        float x2 = transform.position.x, y2 = transform.position.y;
+
+        if (Mathf.Sqrt(Mathf.Pow((x2 - x1), 2) + Mathf.Pow((y2 - y1), 2)) <= touch_radius)
+            return true;
+        else return false;
+
+        
+    }*/
 }
