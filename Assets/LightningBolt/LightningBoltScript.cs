@@ -296,6 +296,7 @@ namespace DigitalRuby.LightningBolt
 
         private void Update()
         {
+
             orthographic = (Camera.main != null && Camera.main.orthographic);
             if (timer <= 0.0f)
             {
@@ -373,5 +374,15 @@ namespace DigitalRuby.LightningBolt
             EndPosition.x = Finger2.transform.position.x;
             EndPosition.y = Finger2.transform.position.y;
         }
+        private void OnTriggerEnter(Collider col)
+        {
+            if (col.tag == "Bomb")
+            {
+                //Debug.Log("boom");
+                Game_Controller.Game_Started = false;
+                Game_Controller.Game_Lost = true;
+            }
+        }       
     }
+
 }
