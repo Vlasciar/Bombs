@@ -55,10 +55,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
+     <Compile Include="Assets\Gyro.cs" />
      <Compile Include="Assets\Scripts\Bomb_Movement.cs" />
+     <Compile Include="Assets\Scripts\Destroyer.cs" />
      <Compile Include="Assets\Scripts\Finger.cs" />
      <Compile Include="Assets\Scripts\Game_Controller.cs" />
+     <Compile Include="Assets\Scripts\Initial_Explosion.cs" />
+     <Compile Include="Assets\Scripts\LightningBoltScript.cs" />
      <None Include="Assets\LightningBolt\Readme.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Uniy_Projects/Bombs/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

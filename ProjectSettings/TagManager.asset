@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bomb
   - PlayTag
+  - Explosion_Trigger
   layers:
   - Default
   - TransparentFX

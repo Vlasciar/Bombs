@@ -30,11 +30,8 @@ public class Bomb_Movement : MonoBehaviour
     public float speed;
     int frame = 0;
     void FixedUpdate()
-    {
-        if (Game_Controller.Game_Lost)
-        {
-            Destroy(gameObject);
-        }        float posX;
+    {      
+        float posX;
         float posY;
         float distance = speed * frame;
         if (EdgeID == 0 || EdgeID == 2)
@@ -43,7 +40,7 @@ public class Bomb_Movement : MonoBehaviour
             posY = StartY + distance / Tan * Mathf.Sign(Adj);
             if (distance >= 2 * LimitX)
             {
-                Game_Controller.Score++;
+                Game_Controller.Score++;               
                 Destroy(gameObject);
             }                  
         }
@@ -54,13 +51,14 @@ public class Bomb_Movement : MonoBehaviour
             if (distance >= 2 * LimitY)
             {
                 Game_Controller.Score++;
-                Destroy(gameObject);
+                Destroy(gameObject);                
             } 
         }       
         transform.position = new Vector3(posX, posY, 0);
         
         frame++;
     }
+
     int EdgeID;
     void Generate_Path()
     {
@@ -97,4 +95,6 @@ public class Bomb_Movement : MonoBehaviour
                 break;
         }
     }
+   
+     
 }

@@ -22,11 +22,9 @@ public class Finger : MonoBehaviour
     }
  
     void Update()
-    {
-        if (Game_Controller.Game_Started)
-        {           
+    {       
             Follow_Fingers();
-        }
+        
     }
     //public Finger other_finger;
     void Follow_Fingers()
