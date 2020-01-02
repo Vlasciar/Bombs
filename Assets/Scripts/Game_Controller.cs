@@ -14,6 +14,7 @@ public class Game_Controller : MonoBehaviour
     //public static bool Game_Started = false;
     public static bool Game_Lost = false;
     public GameObject line;
+    public GameObject Touch_Button;
     public GameObject Explosion_Trigger;
     void Awake()
     {
@@ -28,9 +29,10 @@ public class Game_Controller : MonoBehaviour
         Score_Text.text = "Score: " + Score;
         if (Input.touchCount == 2 && !Game_Lost)
         {
-            Play.gameObject.SetActive(false);
+            Play.gameObject.SetActive(false);            
             HighScore.gameObject.SetActive(false);
             line.SetActive(true);
+            Touch_Button.SetActive(false);
             Run_Time += Time.deltaTime;
             Finger_Up_Time = 0;
         }

@@ -55,11 +55,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Gyro.cs" />
      <Compile Include="Assets\Scripts\Bomb_Movement.cs" />
+     <Compile Include="Assets\Scripts\CameraShake.cs" />
      <Compile Include="Assets\Scripts\Destroyer.cs" />
      <Compile Include="Assets\Scripts\Finger.cs" />
      <Compile Include="Assets\Scripts\Game_Controller.cs" />
+     <Compile Include="Assets\Scripts\Gyro.cs" />
      <Compile Include="Assets\Scripts\Initial_Explosion.cs" />
      <Compile Include="Assets\Scripts\LightningBoltScript.cs" />
      <None Include="Assets\LightningBolt\Readme.txt" />

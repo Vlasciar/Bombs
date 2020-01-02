@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d346a49889b2541a74d22a79a7ab74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Time_To_Destroy: 1
 --- !u!1 &139366
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +242,7 @@ GameObject:
   - component: {fileID: 6558045665925803128}
   m_Layer: 0
   m_Name: Explosion
-  m_TagString: Untagged
+  m_TagString: Explosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d346a49889b2541a74d22a79a7ab74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Time_To_Destroy: 2
 --- !u!1 &162364
 GameObject:
   m_ObjectHideFlags: 0
