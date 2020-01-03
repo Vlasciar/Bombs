@@ -11,8 +11,8 @@ public class Bomb_Movement : MonoBehaviour
     //          | 0                              2 |
     //          |                3                 |
     //          -7.5  -3_________________+7.5   -3
-    const float LimitX = 8.5f;
-    const float LimitY = 4.5f;
+    const float LimitX = 9.5f;
+    const float LimitY = 5.5f;
     float StartX, StartY;
     public float DestinationX, DestinationY;
     float Opp, Adj;//Distance between start/end 
@@ -40,7 +40,8 @@ public class Bomb_Movement : MonoBehaviour
             posY = StartY + distance / Tan * Mathf.Sign(Adj);
             if (distance >= 2 * LimitX)
             {
-                Game_Controller.Score++;               
+                Game_Controller.Score++;
+                Number_Anim.Scored = true;
                 Destroy(gameObject);
             }                  
         }
@@ -51,6 +52,7 @@ public class Bomb_Movement : MonoBehaviour
             if (distance >= 2 * LimitY)
             {
                 Game_Controller.Score++;
+                Number_Anim.Scored = true;
                 Destroy(gameObject);                
             } 
         }       

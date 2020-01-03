@@ -18,23 +18,25 @@ public class Game_Controller : MonoBehaviour
     public GameObject Explosion_Trigger;
     void Awake()
     {
-        PlayerPrefs.SetInt("HighScore", 0);/////
+        //PlayerPrefs.SetInt("HighScore", 0);/////
         Play.text = "Hold 2 fingers to start";
         HighScore.gameObject.SetActive(false);
+        m_SpawnRate = SpawnRate;
     }
     float Run_Time;
     float Finger_Up_Time;
     void Update()
     {
-        Score_Text.text = "Score: " + Score;
+        Score_Text.text = "" + Score;
         if (Input.touchCount == 2 && !Game_Lost)
         {
             Play.gameObject.SetActive(false);            
-            HighScore.gameObject.SetActive(false);
+            
             line.SetActive(true);
             Touch_Button.SetActive(false);
             Run_Time += Time.deltaTime;
             Finger_Up_Time = 0;
+            Spawn_Bomb();
         }
 
 
@@ -60,26 +62,34 @@ public class Game_Controller : MonoBehaviour
             Game_Lost = true;
             Instantiate(Explosion_Trigger, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
         }
-        Spawn_Bomb();
-        if(Input.touchCount == 2)
-        {
-           
-        }
-
     }
     public GameObject Bomb;
-    public float SpawnRate = 1f;
+    public float SpawnRate = 2f;
+    float m_SpawnRate;
+    public float SpawnRateDecrement = 0.05f;
     float Time_Since_Last_Spawn = 0;
     void Spawn_Bomb()
     {
-        Time_Since_Last_Spawn += Time.deltaTime;
-        if(!Game_Lost && Input.touchCount == 2 && Time_Since_Last_Spawn >= SpawnRate)
+        if(m_SpawnRate == SpawnRate)
         {
-            Time_Since_Last_Spawn = 0;
+            Invoke("SpawnRate_Decrement", 0f);
+        }
+        Time_Since_Last_Spawn += Time.deltaTime;
+        if(!Game_Lost && Input.touchCount == 2 && Time_Since_Last_Spawn >= m_SpawnRate)
+        {
+            Time_Since_Last_Spawn = 0;            
             Instantiate(Bomb);
         }
     }
-    bool Check_Restart()
+    void SpawnRate_Decrement()
+    {
+        if (m_SpawnRate > 0.5f)
+        {
+            m_SpawnRate -= (SpawnRateDecrement - 0.01f * ((2 - m_SpawnRate) * 2));
+        }
+        Invoke("SpawnRate_Decrement", SpawnRate);
+    }
+    bool Check_Restart()//checks if restart was pressed
     {
         if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
         {
@@ -102,9 +112,8 @@ public class Game_Controller : MonoBehaviour
         }
         return false;
     }
-    void Lose_Screen()
+    void Lose_Screen()// runs after geme is lost and before restart is pressed
     {
-        Score_Text.gameObject.SetActive(false);
         HighScore.gameObject.SetActive(true);
         Play.gameObject.SetActive(true);
         if (Score > PlayerPrefs.GetInt("HighScore"))
@@ -117,14 +126,15 @@ public class Game_Controller : MonoBehaviour
         Play.text = "Restart";
         Run_Time = 0;
         Finger_Up_Time = 0;
+        m_SpawnRate = SpawnRate;
     }
-    void Restart()
+    void Restart()// runs when restart is pressed
     {
         Score = 0;
         Play.gameObject.SetActive(false);
         Score_Text.gameObject.SetActive(true);
         NewHighScore.gameObject.SetActive(false);
-        HighScore.gameObject.SetActive(true);
+        HighScore.gameObject.SetActive(false);
         Game_Lost = false;
     }
 }

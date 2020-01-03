@@ -7,6 +7,7 @@ public class Destroyer : MonoBehaviour
     public float Time_To_Destroy = 2f;
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         Destroy(gameObject, Time_To_Destroy);  
     }
     float time = 0;
@@ -25,5 +26,11 @@ public class Destroyer : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
+    AudioSource audio;
+    public AudioClip Explosion;
+    void Sound_Explosion()
+    {
+        audio.clip = Explosion;
+        audio.Play(0);
+    }
 }
