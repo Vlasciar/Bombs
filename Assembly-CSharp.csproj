@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Bomb_Movement.cs" />
+     <Compile Include="Assets\Scripts\Bomb_Spawner.cs" />
      <Compile Include="Assets\Scripts\CameraShake.cs" />
      <Compile Include="Assets\Scripts\Destroyer.cs" />
      <Compile Include="Assets\Scripts\Finger.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\Scripts\Gyro.cs" />
      <Compile Include="Assets\Scripts\Initial_Explosion.cs" />
      <Compile Include="Assets\Scripts\LightningBoltScript.cs" />
+     <Compile Include="Assets\Scripts\Music.cs" />
      <Compile Include="Assets\Scripts\Number_Anim.cs" />
      <None Include="Assets\LightningBolt\Readme.txt" />
  <Reference Include="Unity.Timeline.Editor">

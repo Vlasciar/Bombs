@@ -9,6 +9,7 @@ public class Number_Anim : MonoBehaviour
     Animation anim;
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         anim = GetComponent<Animation>();
     }
     void Update()
@@ -18,5 +19,12 @@ public class Number_Anim : MonoBehaviour
             anim.Play("Score_Up");
             Scored = false;
         }
+    }
+    AudioSource audio;
+    public AudioClip Audio_Scored;
+    void Sound_Scored()
+    {
+        audio.clip = Audio_Scored;
+        audio.Play(0);
     }
 }
