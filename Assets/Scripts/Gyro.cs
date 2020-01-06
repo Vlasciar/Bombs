@@ -19,15 +19,15 @@ public class Gyro : MonoBehaviour
         {
             if (Input.gyro.rotationRateUnbiased.y > transform.position.x)
             {
-                transform.position += new Vector3(smoothness, 0, 0);
+                transform.position += new Vector3(-smoothness, 0, 0);
                 if (Mathf.Abs(transform.position.x) > Max_Xoffset)
-                    transform.position += new Vector3(-smoothness, 0, 0);//Revert movement
+                    transform.position += new Vector3(smoothness, 0, 0);//Revert movement
             }          
             if (Input.gyro.rotationRateUnbiased.y < transform.position.x)
             {
-                transform.position += new Vector3(-smoothness, 0, 0);
+                transform.position += new Vector3(smoothness, 0, 0);
                 if (Mathf.Abs(transform.position.x) > Max_Xoffset)
-                    transform.position += new Vector3(smoothness, 0, 0);
+                    transform.position += new Vector3(-smoothness, 0, 0);
             }
         }
         

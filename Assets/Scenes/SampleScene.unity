@@ -624,6 +624,7 @@ GameObject:
   - component: {fileID: 1090229891}
   - component: {fileID: 1090229893}
   - component: {fileID: 1090229892}
+  - component: {fileID: 1090229894}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -792,6 +793,20 @@ MonoBehaviour:
   Track_1: {fileID: 8300000, guid: 34f23395861ecac47b2642b53d39e7b4, type: 3}
   Track_2: {fileID: 8300000, guid: 4290b1f0fe7417243ac56406d1c5a54d, type: 3}
   Track_3: {fileID: 8300000, guid: 32faa13d7290ede468d19eb308350ac4, type: 3}
+--- !u!114 &1090229894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090229888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ebdc21212f37146812769926917af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Finger1: {fileID: 645177182}
+  Finger2: {fileID: 1065682921}
 --- !u!1001 &1097569847
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Bomb_Movement.cs" />
      <Compile Include="Assets\Scripts\Bomb_Spawner.cs" />
      <Compile Include="Assets\Scripts\CameraShake.cs" />
+     <Compile Include="Assets\Scripts\Chaos_Controller.cs" />
      <Compile Include="Assets\Scripts\Destroyer.cs" />
      <Compile Include="Assets\Scripts\Finger.cs" />
      <Compile Include="Assets\Scripts\Game_Controller.cs" />

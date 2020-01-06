@@ -17,13 +17,14 @@ public class Bomb_Spawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount == 2 && !Game_Controller.Game_Lost)
+        if (Game_Controller.Game_Running)
         {
             Spawn_Bomb();
         }
-        if (!Game_Controller.Game_Lost)
+        if (Game_Controller.Game_Lost)
         {
             m_SpawnRate = SpawnRate;
+            CancelInvoke();// cancel the decrement function
         }
      }
     void Spawn_Bomb()
@@ -33,7 +34,7 @@ public class Bomb_Spawner : MonoBehaviour
             Invoke("SpawnRate_Decrement", 0f);
         }
         Time_Since_Last_Spawn += Time.deltaTime;
-        if (!Game_Controller.Game_Lost && Input.touchCount == 2 && Time_Since_Last_Spawn >= m_SpawnRate)
+        if (Time_Since_Last_Spawn >= m_SpawnRate)
         {
             Time_Since_Last_Spawn = 0;
             Instantiate(Bomb);

@@ -13,6 +13,7 @@ public class Game_Controller : MonoBehaviour
     public TextMesh Play;
     //public static bool Game_Started = false;
     public static bool Game_Lost = false;
+    public static bool Game_Running = false;
     public GameObject line;
     public GameObject Touch_Button;
     public GameObject Explosion_Trigger;
@@ -23,28 +24,17 @@ public class Game_Controller : MonoBehaviour
         HighScore.gameObject.SetActive(false);
     }
     float Run_Time;
-    float Finger_Up_Time;
     void Update()
     {
         Score_Text.text = "" + Score;
-        if (Input.touchCount == 2 && !Game_Lost)//game running
+        if(!Game_Lost && Input.touchCount == 2)
         {
-            Play.gameObject.SetActive(false);                      
-            line.SetActive(true);
-            Touch_Button.SetActive(false);
-            Run_Time += Time.deltaTime;
-            Finger_Up_Time = 0;
+            Game_Running = true;
         }
-
-
-        if (Input.touchCount < 2 || Game_Lost)
+        if (Game_Running)//game running normally
         {
-            line.SetActive(false);
-            if (Run_Time > 0)
-            {
-                Finger_Up_Time += Time.deltaTime;
-            }
-        }
+            Run_Routine();               
+        }             
         if(Game_Lost)
         {
             Lose_Screen();            
@@ -53,14 +43,15 @@ public class Game_Controller : MonoBehaviour
                 Restart();
             }
         }
-
-        if (Input.touchCount < 2 && !Game_Lost && Finger_Up_Time > 0.15f)
-        {            
-            Game_Lost = true;
-            Instantiate(Explosion_Trigger, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-        }
     }
-    
+    void Run_Routine()
+    {
+        Play.gameObject.SetActive(false);
+        line.SetActive(true);
+        Touch_Button.SetActive(false);
+        Run_Time += Time.deltaTime;
+
+    }
     bool Check_Restart()//checks if restart was pressed
     {
         if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
@@ -86,6 +77,8 @@ public class Game_Controller : MonoBehaviour
     }
     void Lose_Screen()// runs after geme is lost and before restart is pressed
     {
+        Game_Running = false;
+        line.SetActive(false);
         HighScore.gameObject.SetActive(true);
         Play.gameObject.SetActive(true);
         if (Score > PlayerPrefs.GetInt("HighScore"))
@@ -95,9 +88,8 @@ public class Game_Controller : MonoBehaviour
         }
             
         HighScore.text = String.Concat("High Score: ", PlayerPrefs.GetInt("HighScore").ToString());
-        Play.text = "Restart";
-        Run_Time = 0;
-        Finger_Up_Time = 0;        
+        Play.text = "Restart";        
+        Run_Time = 0;     
     }
     void Restart()// runs when restart is pressed
     {

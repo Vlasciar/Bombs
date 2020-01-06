@@ -63,9 +63,9 @@ namespace DigitalRuby.LightningBolt
         public float Duration = 0.05f;
         private float timer;
 
-        [Range(0.0f, 1.0f)]
-        [Tooltip("How chaotic should the lightning be? (0-1)")]
-        public float ChaosFactor = 0.15f;
+       // [Range(0.0f, 1.0f)]
+       // [Tooltip("How chaotic should the lightning be? (0-1)")]
+        public static float ChaosFactor = 0.05f;
 
         [Tooltip("In manual mode, the trigger method must be called to create a bolt")]
         public bool ManualMode;
