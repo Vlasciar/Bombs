@@ -8,6 +8,7 @@ TagManager:
   - PlayTag
   - Explosion_Trigger
   - Explosion
+  - Volume_Icon
   layers:
   - Default
   - TransparentFX

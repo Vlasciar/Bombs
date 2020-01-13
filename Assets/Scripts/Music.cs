@@ -33,9 +33,9 @@ public class Music : MonoBehaviour
             {
                 is_Transitioning_Out = true;
             }
-            else
+            else if(!IsInvoking("Sound_Track_0"))
             {
-                Sound_Track_0();
+                Invoke("Sound_Track_0", 0.66f);
             }           
         }
         else if(Input.touchCount == 2 && !Game_Controller.Game_Lost) //if game started
@@ -73,16 +73,25 @@ public class Music : MonoBehaviour
                     Sound_Track_3();
                 }
             }
-
+        }       
+        if (Master_Volume.Volume_Status && (Master_Volume.Volume_Status != last_frame_vol_stat))
+        {
+            audio.volume = Volume_Music;
         }
+        if (!Master_Volume.Volume_Status)
+        {
+            audio.volume = 0;
+        }
+        last_frame_vol_stat = Master_Volume.Volume_Status;
     }
+    bool last_frame_vol_stat = true;
     public float Volume_Music;
     void Transition_In()
     {
         is_Transitioning_Out = false;
         if (audio.volume < Volume_Music)
         {
-            audio.volume += 0.01f;
+            audio.volume += Volume_Music / 100;
         }
         else
         {
@@ -94,7 +103,7 @@ public class Music : MonoBehaviour
         is_Transitioning_In = false;
         if (audio.volume > 0)
         {
-            audio.volume -= 0.01f;
+            audio.volume -= Volume_Music / 50;
         }
         else
         {

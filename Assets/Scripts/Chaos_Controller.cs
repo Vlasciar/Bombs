@@ -11,24 +11,31 @@ public class Chaos_Controller : MonoBehaviour
     }
 
     float Laser_Length;
-    public GameObject Finger1;
-    public GameObject Finger2;
+    public Finger Finger1;
+    public Finger Finger2;
+    float Max_Chaos;
+    public AnimationCurve Chaos_Curve;
+
     void Update()
     {
         //Debug.Log(DigitalRuby.LightningBolt.LightningBoltScript.ChaosFactor);
         Laser_Length = Vector2.Distance(Finger1.transform.position, Finger2.transform.position);
-        Debug.Log(Laser_Length);
-        if (Input.touchCount == 2)
+        Max_Chaos = this.Chaos_Curve.Evaluate(Laser_Length);
+       // Debug.Log("Ln "+Laser_Length + "CH " + Max_Chaos);
+        if (Finger1.Finger_Busy && Finger2.Finger_Busy)
         {
-            DigitalRuby.LightningBolt.LightningBoltScript.ChaosFactor = 0.05f;
+            if(DigitalRuby.LightningBolt.LightningBoltScript.ChaosFactor > 0.01f)
+                DigitalRuby.LightningBolt.LightningBoltScript.ChaosFactor -= 0.01f;
         }
-        if (Input.touchCount < 2)
+        else
         {
             if (Game_Controller.Game_Running)
             {
                // Finger_Up_Time += Time.deltaTime;
-                if (DigitalRuby.LightningBolt.LightningBoltScript.ChaosFactor < 0.7)
+                if (DigitalRuby.LightningBolt.LightningBoltScript.ChaosFactor < Max_Chaos)
                     DigitalRuby.LightningBolt.LightningBoltScript.ChaosFactor += 0.1f;
+                if (DigitalRuby.LightningBolt.LightningBoltScript.ChaosFactor > Max_Chaos)
+                    DigitalRuby.LightningBolt.LightningBoltScript.ChaosFactor = Max_Chaos;
             }
         }
     }

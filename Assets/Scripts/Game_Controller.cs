@@ -23,7 +23,7 @@ public class Game_Controller : MonoBehaviour
         Play.text = "Hold 2 fingers to start";
         HighScore.gameObject.SetActive(false);
     }
-    float Run_Time;
+    public static float Run_Time;
     void Update()
     {
         Score_Text.text = "" + Score;
@@ -38,7 +38,8 @@ public class Game_Controller : MonoBehaviour
         if(Game_Lost)
         {
             Lose_Screen();            
-            if(Check_Restart())
+
+            if(Check_Touch.Check("PlayTag"))
             {
                 Restart();
             }
@@ -51,29 +52,6 @@ public class Game_Controller : MonoBehaviour
         Touch_Button.SetActive(false);
         Run_Time += Time.deltaTime;
 
-    }
-    bool Check_Restart()//checks if restart was pressed
-    {
-        if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
-        {
-            Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            RaycastHit raycastHit;
-            if (Physics.Raycast(raycast, out raycastHit))
-            {
-                if (raycastHit.collider.name == "Play")
-                {
-                    return true;
-                }
-
-                //OR with Tag
-
-                if (raycastHit.collider.CompareTag("PlayTag"))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
     void Lose_Screen()// runs after geme is lost and before restart is pressed
     {
