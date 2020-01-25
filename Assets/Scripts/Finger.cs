@@ -50,8 +50,19 @@ public class Finger : MonoBehaviour
     public GameObject Other_Finger;
     void Follow_Fingers()
     {
-        Touch touch = Input.GetTouch(FID);
+        try 
+        {
+            Input.GetTouch(FID);
+        }       
+        catch
+        {
+            FID_Busy[FID] = false;
+            Finger_Busy = false;
+            return;
+        }
 
+
+        Touch touch = Input.GetTouch(FID);
         if (touch.phase == TouchPhase.Moved)// Move the cube if the screen has the finger moving.//FID == touch.fingerId &&
         {
             Vector2 pos = touch.position;
@@ -59,12 +70,12 @@ public class Finger : MonoBehaviour
             pos.x = ((pos.x - width) * Xscale) / width;
             pos.y = ((pos.y - height) * Yscale) / height;
             // Position the finger.
-            if (Vector2.Distance(pos,transform.position)<= Radius || Game_Controller.Run_Time < 0.25f)
+            if (Vector2.Distance(pos, transform.position) <= Radius || Game_Controller.Run_Time < 0.25f)
             {
                 transform.position = pos;
             }
             //reposition if laser lenght is to short
-            if(Vector2.Distance(transform.position, Other_Finger.transform.position) < Radius)
+            if (Vector2.Distance(transform.position, Other_Finger.transform.position) < Radius)
             {
                 transform.position = last_pos;
                 Set_Circular_Position(pos);
@@ -74,7 +85,7 @@ public class Finger : MonoBehaviour
         {
             FID_Busy[touch.fingerId] = false;
             Finger_Busy = false;
-        }
+        }        
     }
     public float Radius;
     void Set_Circular_Position(Vector2 B)//touch point

@@ -1,9 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - Bomb_Movement
-    - Bomb_Spawner
+    - Camera_Shake
     - Chaos_Controller
+    - Collision_Detection
     - Destroyer
     - DigitalRuby.LightningBolt.LightningBoltScript
     - Finger
@@ -13,8 +13,13 @@ ScriptsOnlyBuild:
     - Master_Volume
     - Music
     - Number_Anim
+    - Obstacle_Movement
+    - Obstacle_Spawner
+    - Pick_Ups
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
+    - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.Rider.Editor.dll:
@@ -76,29 +81,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11448}
     - Class: 114
-      Script: {instanceID: 11532}
+      Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11588}
+      Script: {instanceID: 11534}
     - Class: 114
       Script: {instanceID: 11590}
     - Class: 114
-      Script: {instanceID: 11610}
+      Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 11790}
+      Script: {instanceID: 11612}
     - Class: 114
-      Script: {instanceID: 11844}
+      Script: {instanceID: 11792}
     - Class: 114
-      Script: {instanceID: 12074}
+      Script: {instanceID: 11846}
     - Class: 114
-      Script: {instanceID: 12300}
+      Script: {instanceID: 12078}
     - Class: 114
-      Script: {instanceID: 12360}
+      Script: {instanceID: 12362}
     - Class: 114
-      Script: {instanceID: 12434}
+      Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 13374}
+      Script: {instanceID: 12860}
     - Class: 114
-      Script: {instanceID: 13432}
+      Script: {instanceID: 13288}
+    - Class: 114
+      Script: {instanceID: 13380}
+    - Class: 114
+      Script: {instanceID: 13438}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -120,6 +129,12 @@ ScriptsOnlyBuild:
     - Class: 850595691
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: d8b6666e0e66fd23b36abe2c0ff2d957
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Collision_Detection
   - hash:
       serializedVersion: 2
       Hash: 335279d4cacbf3dc7b8925b1e63a3552
@@ -170,16 +185,16 @@ ScriptsOnlyBuild:
     className: Chaos_Controller
   - hash:
       serializedVersion: 2
-      Hash: d9d23a4d9e005ab8b6cd60d007448ec7
+      Hash: ecca2a537a555bd5c4b157945db0c3e0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Game_Controller
   - hash:
       serializedVersion: 2
-      Hash: 1851eac1677c56c67a9c11d375e863b7
+      Hash: 00faa93cf2eef68ea18d885fd1ccc102
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Bomb_Spawner
+    className: Obstacle_Spawner
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -272,7 +287,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: cd2111ef0f05c75638b5da20afad07fc
+      Hash: 056965db26f68d91f57738aaf317d1c8
     assemblyName: Assembly-CSharp.dll
     namespaceName: DigitalRuby.LightningBolt
     className: LightningBoltScript
@@ -395,7 +410,7 @@ ScriptsOnlyBuild:
       Hash: c72dd47def0fd4e12380e97b298681b4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Bomb_Movement
+    className: Obstacle_Movement
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -470,6 +485,12 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 51701a63098923ede7dc01ffb5a1ad31
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Pick_Ups
+  - hash:
+      serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -510,6 +531,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Camera_Shake
   - hash:
       serializedVersion: 2
       Hash: d3b88a68e59633f91953413bb8bdfe0e

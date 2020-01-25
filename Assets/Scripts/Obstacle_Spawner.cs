@@ -59,7 +59,7 @@ public class Obstacle_Spawner : MonoBehaviour
         Spawn_Chance = this.Chance_Curve.Evaluate((float)Game_Controller.Score / 100);
         if (Time_Since_Last_Check >= 1)
         {
-            if ((int)Random.Range(0, 5 / Spawn_Chance) == 0)//from 2%chance to 10% to spawn each second
+            if ((int)Random.Range(0, 50 / Spawn_Chance) == 0)//from 2%chance to 10% to spawn each second
             {
                 Instantiate(Star);
             }
