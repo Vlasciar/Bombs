@@ -16,6 +16,10 @@ public class Initial_Explosion : MonoBehaviour
             Instantiate(Explosion, col.transform.position, col.transform.rotation);
             Destroy(col.gameObject);
         }
+        if (col.tag == "Star")
+        {
+            Destroy(col.gameObject);
+        }
     }
     
     void Update()

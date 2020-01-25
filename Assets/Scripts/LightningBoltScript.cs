@@ -290,8 +290,6 @@ namespace DigitalRuby.LightningBolt
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.positionCount = 0;
             UpdateFromMaterialChange();
-
-            meshCollider = GetComponent<MeshCollider>();////
         }
 
         private void Update()
@@ -311,17 +309,8 @@ namespace DigitalRuby.LightningBolt
                 }
             }
             timer -= Time.deltaTime;
-            /////////////////////////////////////
             Sync_With_Fingers();
-            Mesh mesh = new Mesh();
-            lineRenderer.BakeMesh(mesh, true);
-            meshCollider.sharedMesh = mesh;           
-            /////////////////////////////////////
         }
-        MeshCollider meshCollider;////////////        
-        /// <summary>
-        /// Trigger a lightning bolt. Use this if ManualMode is true.
-        /// </summary>
         public void Trigger()
         {
             Vector3 start, end;
@@ -347,9 +336,6 @@ namespace DigitalRuby.LightningBolt
             UpdateLineRenderer();
         }
 
-        /// <summary>
-        /// Call this method if you change the material on the line renderer
-        /// </summary>
         public void UpdateFromMaterialChange()
         {
             size = new Vector2(1.0f / (float)Columns, 1.0f / (float)Rows);
@@ -373,16 +359,7 @@ namespace DigitalRuby.LightningBolt
 
             EndPosition.x = Finger2.transform.position.x;
             EndPosition.y = Finger2.transform.position.y;
-        }
-        public GameObject Explosion_Trigger;
-        private void OnTriggerEnter(Collider col)
-        {
-            if (col.tag == "Bomb")
-            {
-                Instantiate(Explosion_Trigger, col.transform.position, col.transform.rotation);
-                Game_Controller.Game_Lost = true;
-            }
-        }       
+        } 
     }
 
 }

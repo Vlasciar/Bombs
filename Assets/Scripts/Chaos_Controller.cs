@@ -5,11 +5,6 @@ using UnityEngine;
 public class Chaos_Controller : MonoBehaviour
 {
 
-    void Start()
-    {
-        
-    }
-
     float Laser_Length;
     public Finger Finger1;
     public Finger Finger2;

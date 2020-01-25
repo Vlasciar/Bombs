@@ -9,6 +9,8 @@ TagManager:
   - Explosion_Trigger
   - Explosion
   - Volume_Icon
+  - Star
+  - ReviveTag
   layers:
   - Default
   - TransparentFX

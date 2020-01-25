@@ -7,13 +7,15 @@ using System;
 public class Game_Controller : MonoBehaviour
 {
     public static int Score;
+    public static int HighScore;
     public TextMesh Score_Text;
-    public TextMesh HighScore;
+    public TextMesh HighScore_Text;
     public TextMesh NewHighScore;
     public TextMesh Play;
     //public static bool Game_Started = false;
     public static bool Game_Lost = false;
     public static bool Game_Running = false;
+    public GameObject Stars_Count;
     public GameObject line;
     public GameObject Touch_Button;
     public GameObject Explosion_Trigger;
@@ -21,7 +23,8 @@ public class Game_Controller : MonoBehaviour
     {
         //PlayerPrefs.SetInt("HighScore", 0);/////
         Play.text = "Hold 2 fingers to start";
-        HighScore.gameObject.SetActive(false);
+        HighScore_Text.gameObject.SetActive(false);
+        Load_Player();
     }
     public static float Run_Time;
     void Update()
@@ -41,11 +44,12 @@ public class Game_Controller : MonoBehaviour
 
             if(Check_Touch.Check("PlayTag"))
             {
-                Restart();
+                Play.gameObject.GetComponent<Animation>().Play();
+                Invoke("Restart", 0.4f);
             }
         }
     }
-    void Run_Routine()
+    void Run_Routine()// - runs continous
     {
         Play.gameObject.SetActive(false);
         line.SetActive(true);
@@ -53,30 +57,52 @@ public class Game_Controller : MonoBehaviour
         Run_Time += Time.deltaTime;
 
     }
-    void Lose_Screen()// runs after geme is lost and before restart is pressed
+    void Lose_Screen()// runs after geme is lost and before restart is pressed - runs continous
     {
+        Save_Player();//saves for the highscore 
+        Stars_Count.SetActive(true);
         Game_Running = false;
         line.SetActive(false);
-        HighScore.gameObject.SetActive(true);
+        HighScore_Text.gameObject.SetActive(true);
         Play.gameObject.SetActive(true);
-        if (Score > PlayerPrefs.GetInt("HighScore"))
+        if (Score > HighScore)
         {
-            PlayerPrefs.SetInt("HighScore", Score);
+            HighScore = Score;
             NewHighScore.gameObject.SetActive(true);
         }
-            
-        HighScore.text = String.Concat("High Score: ", PlayerPrefs.GetInt("HighScore").ToString());
+
+        HighScore_Text.text = String.Concat("High Score: ", HighScore);
         Play.text = "Restart";        
         Run_Time = 0;     
     }
-    void Restart()// runs when restart is pressed
+    public void Restart()// runs when restart is pressed - runs on press
     {
-        Score = 0;
-        Play.gameObject.SetActive(false);
+        Stars_Count.SetActive(false);
+        Play.gameObject.SetActive(false);        
         Score_Text.gameObject.SetActive(true);
         NewHighScore.gameObject.SetActive(false);
-        HighScore.gameObject.SetActive(false);
+        HighScore_Text.gameObject.SetActive(false);
+        Touch_Button.SetActive(true);
         Game_Lost = false;
+        if (!Game_Running)
+        {
+            Obstacle_Spawner.m_SpawnRate = 2;//resets the spawn rate
+            Score = 0;
+            Pick_Ups.Revive_Cost = 5;
+        }
+    }
+
+    public void Save_Player()
+    {
+        Save_System.Save_Player();
+    }
+
+    public void Load_Player()
+    {
+        Player_Data data = Save_System.Load_Player();
+
+        Game_Controller.HighScore = data.HighScore;
+        Pick_Ups.Star_Count = data.Stars;
     }
 }
 

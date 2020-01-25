@@ -55,11 +55,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Bomb_Movement.cs" />
-     <Compile Include="Assets\Scripts\Bomb_Spawner.cs" />
-     <Compile Include="Assets\Scripts\CameraShake.cs" />
+     <Compile Include="Assets\Scripts\Camera_Shake.cs" />
      <Compile Include="Assets\Scripts\Chaos_Controller.cs" />
      <Compile Include="Assets\Scripts\Check_Touch.cs" />
+     <Compile Include="Assets\Scripts\Collision_Detection.cs" />
      <Compile Include="Assets\Scripts\Destroyer.cs" />
      <Compile Include="Assets\Scripts\Finger.cs" />
      <Compile Include="Assets\Scripts\Game_Controller.cs" />
@@ -69,6 +68,11 @@
      <Compile Include="Assets\Scripts\Master_Volume.cs" />
      <Compile Include="Assets\Scripts\Music.cs" />
      <Compile Include="Assets\Scripts\Number_Anim.cs" />
+     <Compile Include="Assets\Scripts\Obstacle_Movement.cs" />
+     <Compile Include="Assets\Scripts\Obstacle_Spawner.cs" />
+     <Compile Include="Assets\Scripts\Pick_Ups.cs" />
+     <Compile Include="Assets\Scripts\Player_Data.cs" />
+     <Compile Include="Assets\Scripts\Save_System.cs" />
      <None Include="Assets\LightningBolt\Readme.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Uniy_Projects/Bombs/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

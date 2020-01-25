@@ -8,16 +8,19 @@ public class Destroyer : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
-        Destroy(gameObject, Time_To_Destroy);  
+        if (Time_To_Destroy > 0)
+        {
+           Destroy(gameObject, Time_To_Destroy);  
+        }
     }
     float time = 0;
     void Update()
     {
         if (tag == "Explosion" && time < 0.25f)
         {
-            if (CameraShake.Shake == false)
+            if (Camera_Shake.Shake == false)
             {
-                CameraShake.Shake = true;
+                Camera_Shake.Shake = true;
             }
         }
         time += Time.deltaTime;
@@ -25,6 +28,10 @@ public class Destroyer : MonoBehaviour
     public void Destroy_Object()
     {
         Destroy(gameObject);
+    }
+    public void Deactivate_Object()
+    {
+        this.gameObject.SetActive(false);
     }
     AudioSource audio;
     public AudioClip Explosion;
