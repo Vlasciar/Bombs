@@ -27,11 +27,11 @@ public class Pick_Ups : MonoBehaviour
     }
     void Revive()
     {
-        Pick_Ups.Star_Count -= Revive_Cost;
-        Save_System.Save_Player();//saves for star count
+        Pick_Ups.Star_Count -= Revive_Cost;        
         Game_Controller.Game_Running = true;
         Controller_Script.Restart();
         Revive_Cost *= 2;
         Spawner_Script.SpawnRate_Decrement();
+        Save_System.Save_Player();//saves for star count
     }
 }
