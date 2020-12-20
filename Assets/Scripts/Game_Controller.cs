@@ -8,6 +8,8 @@ public class Game_Controller : MonoBehaviour
 {
     public static int Score;
     public static int HighScore;
+    //public static bool showTutorial;
+    public Toggle Tutorial;
     public TextMesh Score_Text;
     public TextMesh HighScore_Text;
     public TextMesh NewHighScore;
@@ -19,12 +21,18 @@ public class Game_Controller : MonoBehaviour
     public GameObject line;
     public GameObject Touch_Button;
     public GameObject Explosion_Trigger;
+    public GameObject Frame;
     void Awake()
     {
-        //PlayerPrefs.SetInt("HighScore", 0);/////
-        Play.text = "Hold 2 fingers to start";
+        //PlayerPrefs.SetInt("HighScore", 0);//COMMENT THIS OUT ON BUILD!!!!!1
+        PlayerPrefs.SetInt("Tutorial",1);//COMMENT THIS OUT ON BUILD!!!!@1
+        Play.text = "";
         HighScore_Text.gameObject.SetActive(false);
         Load_Player();
+        if (PlayerPrefs.GetInt("Tutorial") == 0)
+        {
+            Frame.SetActive(false);
+        }
     }
     public static float Run_Time;
     void Update()
@@ -48,9 +56,15 @@ public class Game_Controller : MonoBehaviour
                 Invoke("Restart", 0.4f);
             }
         }
+        if(Tutorial.isOn)
+        {           
+            PlayerPrefs.SetInt("Tutorial", 0);
+            Save_Player();
+        }
     }
     void Run_Routine()// - runs continous
     {
+        Frame.SetActive(false);
         Play.gameObject.SetActive(false);
         line.SetActive(true);
         Touch_Button.SetActive(false);
