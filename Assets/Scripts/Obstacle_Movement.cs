@@ -51,7 +51,7 @@ public class Obstacle_Movement : MonoBehaviour
             posY = StartY + distance * Mathf.Sign(Adj);
             if (distance >= 2 * LimitY)
             {
-                Game_Controller.Score++;
+                Game_Controller.Score+= (int)Obstacle_Spawner.multiplier;
                 Number_Anim.Scored = true;
                 Destroy(gameObject);                
             } 
